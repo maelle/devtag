@@ -40,25 +40,21 @@ To use {devtag} :
 (1) Use "@dev" for unexported functions where you would have used "@export" for
 exported functions.
 
-(2) Have in your DESCRIPTION file the line :
+(2) Run `devtag::use_devtag()` in your package folder.
+
+
+(2) Or, manually, do two edits to your DESCRIPTION file.
+
+    - Add the lines :
 
 ```
 Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))
 ```
 
-This will make sure that when you call `document()` {devtag} will be triggered.
+    - Add "moodymudskipper/devtag" to the `Config/Needs/build` DESCRIPTION file.
 
-(3) Have in your `yourpkg.Rproj` file the line:
 
-```
-PackageRoxygenize: rd,collate,namespace,devtag::dev_roclet
-```
-
-This will make sure than Ctrl+Shift+D, or documenting through the UI in RStudio,
-triggers {devtag}. You can call `file.edit("yourpkg.Rproj")` since clicking on the
-file might open the project rather than open the file for editing.
-
-(4) That's it! Note that to check that it works you'll need to use `devtools::install()`,
+(3) That's it! Note that to check that it works you'll need to use `devtools::install()`,
 clicking the *Install* button in the build pane will still install the build ignored
 help files with the package (not really a bad thing on your machine anyway).
 
