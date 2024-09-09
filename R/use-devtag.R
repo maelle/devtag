@@ -12,16 +12,33 @@ use_devtag <- function(path = ".") {
   rlang::check_installed("desc")
 
   cli::cli_alert_info("Registering devtag usage in DESCRIPTION")
-  # TODO: append if it uses another package?
-  desc::desc_set(
+
+  current_roxy <- desc::desc_get("Roxygen", file = path)[[1]]
+  if (is.na(current_roxy)) {
+      desc::desc_set(
     "Roxygen",
     'list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))'
   )
+  } else {
+    current <- eval(parse(text = current_roxy))
+    new <- current
+    new[["roclets"]] <- union(
+      current[["roclets"]],
+      c("collate", "rd", "namespace", "devtag::dev_roclet")
+    )
+
+    new_string <- paste(deparse(new), collapse = "")
+    desc::desc_set("Roxygen", new_string, file = path)
+
+  }
+
+
 
   cli::cli_alert_info("Registering devtag build-time dependency in DESCRIPTION")
   desc::desc_set(
     "Config/Needs/build",
-    paste_desc(desc::desc_get("Config/Needs/build"), "moodymudskipper/devtag")
+    paste_desc(desc::desc_get("Config/Needs/build", file = path), "moodymudskipper/devtag"),
+    file = path
   )
 
 }
