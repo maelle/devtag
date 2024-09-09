@@ -20,7 +20,7 @@ shared with contributors of your repo.
 Install with
 
 ``` r
-remotes::install_github("moodymudskipper/devtag")
+pak::pak("moodymudskipper/devtag")
 ```
 
 ## How to use
