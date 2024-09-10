@@ -11,7 +11,7 @@
 use_devtag <- function(path = ".") {
   rlang::check_installed("desc")
 
-  cli::cli_alert_info("Registering devtag usage in DESCRIPTION")
+  cli_alert_info("Registering devtag usage in DESCRIPTION")
 
   current_roxy <- desc::desc_get("Roxygen", file = path)[[1]]
   if (is.na(current_roxy)) {
@@ -34,7 +34,7 @@ use_devtag <- function(path = ".") {
 
 
 
-  cli::cli_alert_info("Registering devtag build-time dependency in DESCRIPTION")
+  cli_alert_info("Registering devtag build-time dependency in DESCRIPTION")
   desc::desc_set(
     "Config/Needs/build",
     paste_desc(desc::desc_get("Config/Needs/build", file = path), "moodymudskipper/devtag"),
