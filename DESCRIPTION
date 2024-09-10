@@ -13,4 +13,8 @@ URL: https://github.com/moodymudskipper/devtag
 BugReports: https://github.com/moodymudskipper/devtag/issues
 Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))
 Suggests: 
-    desc
+    desc,
+    testthat (>= 3.0.0),
+    usethis,
+    withr
+Config/testthat/edition: 3
