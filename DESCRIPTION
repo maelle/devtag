@@ -1,8 +1,11 @@
 Package: devtag
 Title: Restrict Help Files to Development
 Version: 0.0.0.9000
-Authors@R: 
-    person("Antoine", "Fabri", , "antoine.fabri@example.com", role = c("aut", "cre"))
+Authors@R: c(
+    person("Antoine", "Fabri", , "antoine.fabri@example.com", role = c("aut", "cre")),
+    person("Maëlle", "Salmon", , "maelle.salmon@yahoo.se", role = "ctb",
+           comment = c(ORCID = "0000-0002-2815-0399"))
+  )
 Description: Restrict Help Files to Development
 License: MIT + file LICENSE
 Encoding: UTF-8
