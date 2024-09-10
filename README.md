@@ -30,17 +30,8 @@ To use {devtag} :
 1)  Use “@dev” for unexported functions where you would have used
     “@export” for exported functions.
 
-2)  Run `devtag::use_devtag()` in your package folder.
-
-3)  Or, manually, do two edits to your DESCRIPTION file.
-
-    - Add the lines :
-
-<!-- -->
-
-    Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "devtag::dev_roclet"))
-
-    - Add "moodymudskipper/devtag" to the `Config/Needs/build` DESCRIPTION file.
+2)  Run `devtag::use_devtag()` in your package folder. This will amend
+    the `DESCRIPTION` to activate devtag usage.
 
 3)  That’s it! Note that to check that it works you’ll need to use
     `devtools::install()`, clicking the *Install* button in the build
