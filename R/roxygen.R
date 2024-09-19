@@ -28,9 +28,13 @@ roclet_output.roclet_dev <- function(x, results, base_path, ...) {
   dev_blocks <- Filter(block_has_dev, blocks)
   dev_topics <- sapply(dev_blocks, function(x) x$object$topic)
 
+  if (length(dev_topics) == 0) {
+    return(invisible())
+  }
+
   # .Rbuildignore
   ignored <- readLines(".Rbuildignore")
-  dev_files <- if (length(dev_topics)) file.path("^man", paste0(dev_topics, "\\.Rd$"))
+  dev_files <- file.path("^man", paste0(nice_name(dev_topics), "\\.Rd$"))
   ignored <- grep("^\\^man/.*\\.Rd\\$$", ignored, invert = TRUE, value = TRUE)
   writeLines(c(ignored, dev_files), ".Rbuildignore")
 
@@ -43,7 +47,7 @@ block_has_dev <- function(x) {
 }
 
 add_keyword_internal <- function(topic) {
-  path <- file.path("man", paste0(topic, ".Rd"))
+  path <- file.path("man", paste0(nice_name(topic), ".Rd"))
   lines <- readLines(path)
   lines <- c(lines, "\\keyword{internal}")
   writeLines(lines, path)
